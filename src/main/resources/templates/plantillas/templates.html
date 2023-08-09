@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperHeroes Adventures</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/TemplatesStyles.css}">
+    <link rel="stylesheet" th:href="@{/css/loginStyles.css}">
+    <link rel="stylesheet" th:href="@{/css/CardGaleria.css}">
+    <link rel="shortcut icon" th:href="@{/images/tempIMG/icono.jpg}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css"> -->
+</head>
+<body>
+    <!--* Header -->
+    <header th:fragment="header">
+        <!--Todo Nav -->
+        <nav class="navbar navbar-dark navbar-expand-md fondo">
+            <div class="container">
+                <a class="navbar-brand" href="#"><img th:src="@{/images/tempIMG/logo.JPG}" alt="" style="width: 100px;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" th:href="@{/index}"><strong>Inicio</strong></a>
+                    </div>
+
+                    <!--TODO: Desplegable para visualizar elementos -->
+                    <li class="navbar-nav dropdown text-white">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Visualizar
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Eventos/Galeria}">Eventos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Organizaciones/Galeria}">Organizaciones</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Habilidades/Galeria}">Habilidades</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Planetas/Galeria}">Planetas</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Villanos/Galeria}">Villanos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/SuperHeroes/Galeria}">Super-Heroes</a></li>
+                        </ul>
+                    </li>
+
+                    <!--TODO: Desplegable de Administración -->
+                    <li class="navbar-nav dropdown text-white" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Administrar
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Eventos/}">Eventos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Organizaciones/}">Organizaciones</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Habilidades/}">Habilidades</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Planetas/}">Planetas</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/Villanos/}">Villanos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/Vistas/SuperHeroes/}">Super-Heroes</a></li>
+                          <li sec:authorize="hasRole('ROLE_ADMIN')"></li><hr class="dropdown-divider"></li>
+                          <li sec:authorize="hasRole('ROLE_ADMIN')"><a class="dropdown-item" th:href="@{/Vistas/Usuarios/}">Usuarios</a></li>
+                        </ul>
+                    </li>
+
+                    <!--TODO: Desplegable de Usuario -->
+                    <ul class="navbar-nav mr-auto">
+                        <li sec:authorize="!isAuthenticated()">
+                            <a class="btn btn-outline-warning" th:href="@{/login}" style="margin-left: 20px;">Iniciar Sesión</a>
+                        </li>
+                        <div class="dropdown" sec:authorize="isAuthenticated()">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <strong class="text-white"><span sec:authentication="name"></span></strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <form th:action="@{/logout}" method="post">
+                                <button class="dropdown-item" type="submit">Cerrar sesión</button>
+                              </form>
+                            </ul>
+                        </div>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+        <!--Todo Mensajes -->
+        <div class="alert alert-success alert-dismissable" th:if="${success!=null}">
+            <div class="d-flex justify-content-center align-items-center">
+                <strong><label th:text="${success}"></label></strong>
+                <button type="button" class="close btnSuc" data-bs-dismiss="alert"><strong>&times;</strong></button>
+            </div>
+        </div>
+        <div class="alert alert-danger alert-dismissable" th:if="${error!=null}">
+            <div class="d-flex justify-content-center align-items-center">
+                <strong><label th:text="${error}"></label></strong>
+                <button type="button" class="close btnDan" data-bs-dismiss="alert"><strong>&times;</strong></button>
+            </div>
+        </div>
+        <div class="alert alert-warning alert-dismissable" th:if="${warning!=null}">
+            <div class="d-flex justify-content-center align-items-center">
+                <strong><label th:text="${warning}"></label></strong>
+                <button type="button" class="close btnWar" data-bs-dismiss="alert"><strong>&times;</strong></button>
+            </div>
+        </div>
+    </header>
+    <!-- Cuerpo -->
+    <div class="container">
+        <h1>hola</h1>
+    </div>
+    <!--Todo footer -->
+    <footer th:fragment="footer" class="pie">
+        <div class="cont-pie">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 footdiv">
+                    <p class="text-center">Redes: 
+                        <a href="https://github.com/MatiasCV27" target="_blank"><i class="bi bi-github foota"></i></a>
+                        <a href="https://twitter.com/MatiasCV27" target="_blank"><i class="bi bi-twitter foota"></i></a>
+                        <a href="https://www.facebook.com" target="_blank"><i class="bi bi-facebook foota"></i></a>
+                        <a href="https://www.youtube.com" target="_blank"><i class="bi bi-youtube foota"></i></a>
+                        <a href="https://www.instagram.com/matias_cv27/?next=%2F" target="_blank"><i class="bi bi-instagram foota"></i></a>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 footdiv">
+                    <p>Telefono: <a href="https://web.whatsapp.com" target="_blank" class="foota">967354987</a></p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 footdiv">
+                    <p class="text-center"><i>Copyright <strong>&copy;</strong> Matias Criollo VIgo <strong>2023</strong></i></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="../../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="../../static/js/popper.min.js"></script>
+</body>
+</html>

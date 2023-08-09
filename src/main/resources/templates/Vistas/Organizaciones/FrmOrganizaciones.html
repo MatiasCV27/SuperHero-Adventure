@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <header th:replace="plantillas/templates::header"></header>
+    <!-- Formulario -->
+    <div class="container formStyles">
+        <div class="row">
+            <div class="card col-lg-9 col-lg-6 col-lg-4 mx-auto bg-dark text-white">
+                <div class="card-title" style="margin-bottom: 0;">
+                    <h3 class="cardtitulo" th:text="${tituloorg}"></h3>
+                </div>
+                <form th:action="@{/Vistas/Organizaciones/Guardar}" th:object="${organizacion}" method="post" enctype="multipart/form-data">
+                  <ul class="list-group list-group-flush">
+                    <input type="hidden" th:field="*{id_organizacion}">
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                           <label for="nombre_org" class="col-lg-3 col-md-3">Nombre:</label>
+                           <input type="text" th:field="*{nombre_org}" id="nombre_org" class="col-lg-9 col-md-9 bg-dark text-white"  placeholder="Ingrese el nombre de la organización" style="border: 1px solid white;">
+                           <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nombre_org')}" th:errors="*{nombre_org}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="desc_org" class="col-lg-3 col-md-3">Descripción:</label>
+                            <textarea id="desc_org" cols="auto" rows="3" th:field="*{desc_org}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;"></textarea>
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('desc_org')}" th:errors="*{desc_org}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="tipo_org" class="col-lg-3 col-md-3">Tipo:</label>
+                            <input type="text" th:field="*{tipo_org}" id="tipo_org" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el tipo de la organización" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('tipo_org')}" th:errors="*{tipo_org}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="base_opera_org" class="col-lg-3 col-md-3">Base:</label>
+                            <input type="text" th:field="*{base_opera_org}" id="base_opera_org" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la base de operaciones de la organización" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('base_opera_org')}" th:errors="*{base_opera_org}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="objetivos_org" class="col-lg-3 col-md-3">Objetivo:</label>
+                            <input type="text" th:field="*{objetivos_org}" id="objetivos_org" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el objetivo de la organización" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('objetivos_org')}" th:errors="*{objetivos_org}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="fecha_creacion_org" class="col-lg-3 col-md-3">Fecha:</label>
+                            <input type="date" th:field="*{fecha_creacion_org}" id="fecha_creacion_org" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la fecha de la fundación" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('fecha_creacion_org')}" th:errors="*{fecha_creacion_org}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="financiamiento_org" class="col-lg-3 col-md-3">Financiamiento:</label>
+                            <input type="text" th:field="*{financiamiento_org}" id="financiamiento_org" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el tipo de financiamiento" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('financiamiento_org')}" th:errors="*{financiamiento_org}"></small>
+                        </div>
+                      </li>
+                    <li class="list-group-item bg-dark text-white">
+                        <div class="row row-cont">
+                            <label for="imagen_org" class="col-lg-3 col-md-3">Imagen:</label>
+                            <input type="file" name="file" id="imagen_org" class="col-lg-9 col-md-9 bg-dark text-white" style="padding-left: 0;">
+                            <span></span>
+                        </div>
+                    </li>
+                  </ul>
+                  <!-- <div class="img-card mx-auto">
+                    <img src="../../../static/images/tempIMG/prueba-min.jpg" alt="">
+                  </div> -->
+                  <div class="card-body m-auto">
+                    <input type="submit" class="btn btn-success form-btn" value="Guardar">
+                    <a th:href="@{/Vistas/Organizaciones/ListaOrganizaciones}" class="btn btn-danger form-btn">Cancelar</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer th:replace="plantillas/templates::footer"></footer></footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

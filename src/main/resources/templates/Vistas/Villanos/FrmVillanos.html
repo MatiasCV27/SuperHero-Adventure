@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <header th:replace="plantillas/templates::header"></header>
+    <!-- Formulario -->
+    <div class="container formStyles">
+        <div class="row">
+            <div class="card col-lg-9 col-lg-6 col-lg-4 mx-auto bg-dark text-white">
+                <div class="card-title" style="margin-bottom: 0;">
+                    <h3 class="cardtitulo" th:text="${titulovil}"></h3>
+                </div>
+                <form th:action="@{/Vistas/Villanos/Guardar}" th:object="${villano}" method="post" enctype="multipart/form-data">
+                  <ul class="list-group list-group-flush">
+                    <input type="hidden" th:field="*{id_villano}">
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="nombre_vil" class="col-lg-3 col-md-3 bg-dark text-white">Nombre:</label>
+                          <input type="text" th:field="*{nombre_vil}" id="nombre_vil" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el nombre del villano" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nombre_vil')}" th:errors="*{nombre_vil}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="desc_vil" class="col-lg-3 col-md-3 bg-dark text-white">Descripción:</label>
+                          <textarea id="desc_vil" cols="auto" rows="3" th:field="*{desc_vil}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;"></textarea>
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('desc_vil')}" th:errors="*{desc_vil}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="personalidad_vil" class="col-lg-3 col-md-3 bg-dark text-white">Personalidad:</label>
+                          <input type="text" th:field="*{personalidad_vil}" id="personalidad_vil" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la personalidad del villano" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('personalidad_vil')}" th:errors="*{personalidad_vil}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="fecha_naci_vil" class="col-lg-3 col-md-3 bg-dark text-white">Fecha:</label>
+                          <input type="date" th:field="*{fecha_naci_vil}" id="fecha_naci_vil" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la fecha de nacimiento del villano" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('fecha_naci_vil')}" th:errors="*{fecha_naci_vil}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="edad_vil" class="col-lg-3 col-md-3 bg-dark text-white">Edad:</label>
+                            <input type="number" th:field="*{edad_vil}" id="edad_vil" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la edad del villano" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('edad_vil')}" th:errors="*{edad_vil}"></small>
+                        </div>
+                      </li>
+                      <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="nivel_amenaza_vil" class="col-lg-3 col-md-3 bg-dark text-white">Amenaza:</label>
+                            <input type="text" th:field="*{nivel_amenaza_vil}" id="nivel_amenaza_vil" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el nivel de amenaza del villano" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nivel_amenaza_vil')}" th:errors="*{nivel_amenaza_vil}"></small>
+                        </div>
+                      </li>
+                      <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="inteligencia_vil" class="col-lg-3 col-md-3 bg-dark text-white">Inteligencia:</label>
+                            <input type="text" th:field="*{inteligencia_vil}" id="inteligencia_vil" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la inteligencia del villano" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('inteligencia_vil')}" th:errors="*{inteligencia_vil}"></small>
+                        </div>
+                      </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                        <label for="imagen_vil" class="col-lg-3 col-md-3 bg-dark text-white">Imagen:</label>
+                        <input type="file" name="file" id="imagen_vil" class="col-lg-9 col-md-9 text-white" style="padding-left: 0;">
+                        <span></span>
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- <div class="img-card mx-auto">
+                    <img src="../../../static/images/tempIMG/prueba-min.jpg" alt="">
+                  </div> -->
+                  <div class="card-body m-auto">
+                    <input type="submit" class="btn btn-success form-btn" value="Guardar">
+                    <a th:href="@{/Vistas/Villanos/ListaVillanos}" class="btn btn-danger form-btn">Cancelar</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer th:replace="plantillas/templates::footer"></footer></footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

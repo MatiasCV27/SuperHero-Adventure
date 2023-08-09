@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <header th:replace="plantillas/templates::header"></header>
+    <!-- Formulario -->
+    <div class="container formStyles">
+        <div class="row">
+            <div class="card col-lg-9 col-lg-6 col-lg-4 mx-auto bg-dark text-white">
+                <div class="card-title" style="margin-bottom: 0;">
+                    <h3 class="cardtitulo" th:text="${titulopla}"></h3>
+                </div>
+                <form th:action="@{/Vistas/Planetas/Guardar}" th:object="${planeta}" method="post" enctype="multipart/form-data">
+                  <ul class="list-group list-group-flush">
+                    <input type="hidden" th:field="*{id_planeta}">
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="nombre_pla" class="col-lg-3 col-md-3 bg-dark text-white">Nombre:</label>
+                          <input type="text" th:field="*{nombre_pla}" id="nombre_pla" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el nombre del planeta" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nombre_pla')}" th:errors="*{nombre_pla}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="desc_pla" class="col-lg-3 col-md-3 bg-dark text-white">Descripción:</label>
+                          <textarea id="desc_pla" cols="auto" rows="3" th:field="*{desc_pla}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;"></textarea>
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('desc_pla')}" th:errors="*{desc_pla}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="tipo_pla" class="col-lg-3 col-md-3 bg-dark text-white">Tipo:</label>
+                          <input type="text" th:field="*{tipo_pla}" id="tipo_pla" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el tipo del planeta" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('tipo_pla')}" th:errors="*{tipo_pla}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="poder_pla" class="col-lg-3 col-md-3 bg-dark text-white">Poder:</label>
+                          <input type="text" th:field="*{poder_pla}" id="poder_pla" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el poder del planeta" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('poder_pla')}" th:errors="*{poder_pla}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="tecnologia_pla" class="col-lg-3 col-md-3 bg-dark text-white">Tecnologia:</label>
+                            <input type="text" th:field="*{tecnologia_pla}" id="tecnologia_pla" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la tecnologia del planeta" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('tecnologia_pla')}" th:errors="*{tecnologia_pla}"></small>
+                        </div>
+                      </li>
+                      <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="nro_lunas_pla" class="col-lg-3 col-md-3 bg-dark text-white">Lunas:</label>
+                            <input type="number" th:field="*{nro_lunas_pla}" id="nro_lunas_pla" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el nro de lunas del planeta" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nro_lunas_pla')}" th:errors="*{nro_lunas_pla}"></small>
+                        </div>
+                      </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                        <label for="imagen_pla" class="col-lg-3 col-md-3 bg-dark text-white">Imagen:</label>
+                        <input type="file" name="file" id="imagen_pla" class="col-lg-9 col-md-9 text-white" style="padding-left: 0;">
+                        <span></span>
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- <div class="img-card mx-auto">
+                    <img src="../../../static/images/tempIMG/prueba-min.jpg" alt="">
+                  </div> -->
+                  <div class="card-body m-auto">
+                    <input type="submit" class="btn btn-success form-btn" value="Guardar">
+                    <a th:href="@{/Vistas/Planetas/ListaPlanetas}" class="btn btn-danger form-btn">Cancelar</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer th:replace="plantillas/templates::footer"></footer></footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

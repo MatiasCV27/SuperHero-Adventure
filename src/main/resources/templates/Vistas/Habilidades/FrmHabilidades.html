@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <header th:replace="plantillas/templates::header"></header>
+    <!-- Formulario -->
+    <div class="container formStyles">
+        <div class="row">
+            <div class="card col-lg-9 col-lg-6 col-lg-4 mx-auto bg-dark text-white">
+                <div class="card-title" style="margin-bottom: 0;">
+                    <h3 class="cardtitulo" th:text="${titulohab}"></h3>
+                </div>
+                <form th:action="@{/Vistas/Habilidades/Guardar}" th:object="${habilidad}" method="post" enctype="multipart/form-data">
+                  <ul class="list-group list-group-flush">
+                    <input type="hidden" th:field="*{id_habilidad}">
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="nombre_hab" class="col-lg-3 col-md-3 bg-dark text-white">Nombre:</label>
+                          <input type="text" th:field="*{nombre_hab}" id="nombre_hab" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el nombre de la habilidad" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nombre_hab')}" th:errors="*{nombre_hab}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="desc_hab" class="col-lg-3 col-md-3 bg-dark text-white">Descripción:</label>
+                          <textarea id="desc_hab" cols="auto" rows="3" th:field="*{desc_hab}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;"></textarea>
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('desc_hab')}" th:errors="*{desc_hab}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="categoria_hab" class="col-lg-3 col-md-3 bg-dark text-white">Categoria:</label>
+                          <input type="text" th:field="*{categoria_hab}" id="categoria_hab" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la categoria de la habilidad" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('categoria_hab')}" th:errors="*{categoria_hab}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                          <label for="alcance_hab" class="col-lg-3 col-md-3 bg-dark text-white">Alcance:</label>
+                          <input type="text" th:field="*{alcance_hab}" id="alcance_hab" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el alcance de la habilidad" style="border: 1px solid white;">
+                          <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('alcance_hab')}" th:errors="*{alcance_hab}"></small>
+                      </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="dificultad_hab" class="col-lg-3 col-md-3 bg-dark text-white">Dificultad:</label>
+                            <input type="text" th:field="*{dificultad_hab}" id="dificultad_hab" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la dificultad de la habilidad" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('dificultad_hab')}" th:errors="*{dificultad_hab}"></small>
+                        </div>
+                      </li>
+                    <li class="list-group-item bg-dark">
+                      <div class="row row-cont">
+                        <label for="imagen_hab" class="col-lg-3 col-md-3 bg-dark text-white">Imagen:</label>
+                        <input type="file" name="file" id="imagen_hab" class="col-lg-9 col-md-9 text-white" style="padding-left: 0;">
+                        <span></span>
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- <div class="img-card mx-auto">
+                    <img src="../../../static/images/tempIMG/prueba-min.jpg" alt="">
+                  </div> -->
+                  <div class="card-body m-auto">
+                    <input type="submit" class="btn btn-success form-btn" value="Guardar">
+                    <a th:href="@{/Vistas/Habilidades/ListaHabilidades}" class="btn btn-danger form-btn">Cancelar</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer th:replace="plantillas/templates::footer"></footer></footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <header th:replace="plantillas/templates::header"></header>
+    <!-- Formulario -->
+    <div class="container formStyles">
+        <div class="row">
+            <div class="card col-lg-9 col-lg-6 col-lg-4 mx-auto bg-dark text-white">
+                <div class="card-title" style="margin-bottom: 0;">
+                    <h3 class="cardtitulo" th:text="${titulosh}"></h3>
+                </div>
+                <form th:action="@{/Vistas/SuperHeroes/Guardar}" th:object="${superHeroe}" method="post" enctype="multipart/form-data">
+                  <ul class="list-group list-group-flush">
+                    <input type="hidden" th:field="*{id_superheroe}">
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="nombre_sh" class="col-lg-3 col-md-3 bg-dark text-white">Nombre:</label>
+                            <input type="text" th:field="*{nombre_sh}" id="nombre_sh" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el nombre del super heroe" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nombre_sh')}" th:errors="*{nombre_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="desc_sh" class="col-lg-3 col-md-3 bg-dark text-white">Descripción:</label>
+                            <textarea id="desc_sh" cols="auto" rows="3" th:field="*{desc_sh}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;"></textarea>
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('desc_sh')}" th:errors="*{desc_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="alias_sh" class="col-lg-3 col-md-3 bg-dark text-white">Alias:</label>
+                            <input type="text" th:field="*{alias_sh}" id="alias_sh" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese el alias del super heroe" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('alias_sh')}" th:errors="*{alias_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="fecha_naci_sh" class="col-lg-3 col-md-3 bg-dark text-white">Nacimiento:</label>
+                            <input type="date" th:field="*{fecha_naci_sh}" id="fecha_naci_sh" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingresa la fecha de nacimiento del super heroe" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('fecha_naci_sh')}" th:errors="*{fecha_naci_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="edad_sh" class="col-lg-3 col-md-3 bg-dark text-white">Edad:</label>
+                            <input type="number" th:field="*{edad_sh}" id="edad_sh" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la edad del super heroe" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('edad_sh')}" th:errors="*{edad_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="genero_sh" class="col-lg-3 col-md-3 bg-dark text-white">Género:</label>
+                            <select th:field="*{genero_sh}" id="genero_sh" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;">
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('genero_sh')}" th:errors="*{genero_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="nacionalidad_sh" class="col-lg-3 col-md-3 bg-dark text-white">Nacionalidad:</label>
+                            <input type="text" th:field="*{nacionalidad_sh}" id="nacionalidad_sh" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la nacionalidad del super heroe" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('nacionalidad_sh')}" th:errors="*{nacionalidad_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="debilidad_sh" class="col-lg-3 col-md-3 bg-dark text-white">Debilidad:</label>
+                            <input type="text" th:field="*{debilidad_sh}" id="debilidad_sh" class="col-lg-9 col-md-9 bg-dark text-white" placeholder="Ingrese la debilidad del super heroe" style="border: 1px solid white;">
+                            <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('debilidad_sh')}" th:errors="*{debilidad_sh}"></small>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="organizacion" class="col-lg-3 col-md-3 bg-dark text-white">Organización:</label>
+                            <select id="organizacion" th:field="*{organizacion}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;">
+                                <option th:each="organizacion : ${organizaciones}" th:value="${organizacion.id_organizacion}" th:text="${organizacion.nombre_org}"></option>
+                            </select>
+                            <!-- <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('organizacion')}" th:errors="*{organizacion}"></small>
+                        </div> -->
+                    </li> 
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="planeta" class="col-lg-3 col-md-3 bg-dark text-white">Planeta:</label>
+                            <select id="planeta" th:field="*{planeta}" class="col-lg-9 col-md-9 bg-dark text-white" style="border: 1px solid white;">
+                                <option th:each="planeta : ${planetas}" th:value="${planeta.id_planeta}" th:text="${planeta.nombre_pla}"></option>
+                            </select>
+                            <!-- <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('planeta')}" th:errors="*{planeta}"></small> -->
+                        </div>
+                    </li> 
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="villano" class="col-lg-3 col-md-3 bg-dark text-white">Villano:</label>
+                            <select style="height: 75px;" id="villano" th:field="*{villano}" class="col-lg-9 col-md-9 bg-dark text-white bordesForm" multiple="multiple">
+                                <option th:each="vil : ${villanos}" th:value="${vil.id_villano}" th:text="${vil.nombre_vil}"></option>
+                            </select>
+                            <!-- <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('villano')}" th:errors="*{villano}"></small> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="habilidad" class="col-lg-3 col-md-3 bg-dark text-white">Habilidad:</label>
+                            <select style="height: 75px;" id="habilidad" th:field="*{habilidad}" class="col-lg-9 col-md-9 bg-dark text-white bordesForm" multiple="multiple">
+                                <option th:each="hab : ${habilidades}" th:value="${hab.id_habilidad}" th:text="${hab.nombre_hab}"></option>
+                            </select>
+                            <!-- <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('habilidad')}" th:errors="*{habilidad}"></small> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="evento" class="col-lg-3 col-md-3 bg-dark text-white">Evento:</label>
+                            <select style="height: 75px;" id="evento" th:field="*{evento}" class="col-lg-9 col-md-9 bg-dark text-white bordesForm" multiple="multiple">
+                                <option th:each="eve : ${eventos}" th:value="${eve.id_evento}" th:text="${eve.nombre_eve}"></option>
+                            </select>
+                            <!-- <small class="form-text text-danger text-center" th:if="${#fields.hasErrors('evento')}" th:errors="*{evento}"></small> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-dark">
+                        <div class="row row-cont">
+                            <label for="imagen_sh" class="col-lg-3 col-md-3 bg-dark text-white">Imagen:</label>
+                            <input type="file" name="file" id="imagen_sh" class="col-lg-9 col-md-9 text-white" style="padding-left: 0;">
+                            <span></span>
+                        </div>
+                    </li>
+                  </ul> 
+                  <!-- <div class="img-card mx-auto">
+                    <img src="../../../static/images/tempIMG/prueba-min.jpg" alt="">
+                  </div> -->
+                  <div class="card-body m-auto">
+                    <input type="submit" class="btn btn-success form-btn" value="Guardar">
+                    <a th:href="@{/Vistas/SuperHeroes/ListaSuperH}" class="btn btn-danger form-btn">Cancelar</a>
+                  </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer th:replace="plantillas/templates::footer"></footer></footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

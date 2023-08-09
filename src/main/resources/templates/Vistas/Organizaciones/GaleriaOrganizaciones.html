@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <div class="cont">
+      <header th:replace="plantillas/templates::header"></header>
+    </div>
+    <!-- Contenido -->
+    <div class="container">
+        <h1 class="text-center titulo text-white" style="margin-bottom: .5em;"><strong><u>Organizaciones</u></strong></h1>
+        <div class="row">
+            <div th:each="org : ${organizaciones}" class="col-lg-4 col-md-6 col-sm-12 padCard mx-auto">
+                <div class="cardMostrar">
+                    <div class="content">
+                      <div class="back">
+                        <div class="back-content">
+                          <svg stroke="#ffffff" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" height="50px" width="50px" fill="#ffffff">
+                          <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                          <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <img th:src="@{/images/AdminIMGs/Organizaciones/}+${org.imagen_org}">
+                          </g>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="front">
+                        <div class="img">
+                          <div class="circle">
+                          </div>
+                          <div class="circle" id="right">
+                          </div>
+                          <div class="circle" id="bottom">
+                          </div>
+                        </div>
+                        <div class="front-content">
+                          <small class="badge">Organización</small>
+                          <div class="description">
+                            <div class="">
+                              <p class="text-center">
+                                <strong th:text="${org.nombre_org}"></strong>
+                              </p>
+                            </div>
+                            <div class="textoCard"><strong>Descripción:</strong><p th:text="${org.desc_org}"></p></div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="textoCard"><strong>Tipo:</strong><p th:text="${org.tipo_org}"></p></div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="textoCard"><strong>Base:</strong><p th:text="${org.base_opera_org}"></p></div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="textoCard"><strong>Objetivos:</strong><p th:text="${org.objetivos_org}"></p></div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="textoCard"><strong>Fundación:</strong><p th:text="${#dates.format(org.fecha_creacion_org, 'yyyy-MM-dd')}"></p></div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="textoCard"><strong>Financiamiento:</strong><p th:text="${org.financiamiento_org}"></p></div>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div style="bottom: 0;">
+        <footer th:replace="plantillas/templates::footer"></footer>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script>
+        function irAtras() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

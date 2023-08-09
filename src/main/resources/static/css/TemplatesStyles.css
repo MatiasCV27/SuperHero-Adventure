@@ -1,0 +1,200 @@
+/* NavBar */
+.fondo {
+    background-image: linear-gradient(to top, #58151c, #44131a, #2f1016, #1d0a0f, #000000);
+    font-size: 1em;
+    padding: 0;
+    border-bottom: 1.5px solid black;
+    height: 100%;
+    width: 100%;
+}
+.imgborder {
+    padding: 0;
+    box-shadow: 2.5px 2.5px 10px black;
+    position: fixed;
+}
+/* Footer */
+.pie {
+    background-image: linear-gradient(to bottom, #58151c, #44131a, #2f1016, #1d0a0f, #000000);
+    color: white;
+    font-size: 1.1em;
+    text-align: center;
+    align-items: center;
+}
+.cont-pie {
+    width: 80%;
+    margin: auto;
+    padding: 2em;
+}
+.cont-pie p {
+    margin: 0;
+    align-self: center;
+}
+.foota {
+    color:  white;
+    padding-left: 10px;
+    text-decoration: none;
+}
+.foota:hover {
+    color: grey;
+}
+@media only screen and (max-width:991px) {
+    .footdiv {
+        padding: 12.5px;
+    }
+}
+/* Boton Registrar Evento */
+.titulo {
+    font-family: Cambria;
+    margin-top: .5em;
+    margin-bottom: 0;
+}
+.regisEven {
+    padding: .75em; 
+    margin: .75em;
+}
+/* Forms */
+.formStyles {
+    font-family: Cambria;
+    font-size: 1.2em;
+    justify-content: center;
+    margin: 2em auto;
+}
+.cardtitulo {
+    text-align: center;
+    margin-top: .5em;
+}
+.img-card {
+    width: 350px;
+    height: 250px;
+    background: #fff;
+    max-width: 100%;
+    border: .75px solid #000000;
+    border-radius: 5px;
+    margin-top: .5em;
+    background-image: url(../images/tempIMG/prueba-min.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, .75);
+    background-position: center;
+}
+.form-btn {
+    margin: 0 1em;
+    padding: .5em 1em;
+}
+/* COsas */
+.banner {
+    position: relative;
+  }
+.imgcard {
+    width: auto;
+    padding: 3em;
+    max-width: 100%;
+}
+.bgA {
+    background-image: radial-gradient(circle, #b86b6b, #874f54, #59363b, #2e1e21, #000000);
+    color: white;
+    border-radius: .5em;
+    margin-bottom: 1em;
+}
+.bgB {
+    background-image: radial-gradient(circle, #7e373a, #5e2b30, #401f24, #231417, #000000);
+    color: white;
+    border-radius: .5em;
+    margin-bottom: 1em;
+}
+/*TODO Editar Alertas */
+.alert {
+    border: 0;
+}
+/*! Warning */
+.alert-warning {
+    border: 3px solid #FFDA48;
+    background-color: #332701;
+    color: #FFDA48;
+    padding: 1.5em;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.btnWar {
+    margin-left: 10px;
+    width: 4em;
+    color: #FFDA48;
+    background: transparent;
+    border: 2px solid #FFDA48;
+}
+.btnWar:hover {
+    color: #332701;
+    background: #FFDA48;
+    border: 2px solid #332701;
+}
+/*! Danger */
+.alert-danger {
+    border: 3px solid red;
+    background-color: #5B1911;
+    color: red;
+    padding: 1.5em;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.btnDan {
+    margin-left: 10px;
+    width: 4em;
+    color: red;
+    background: transparent;
+    border: 2px solid red;
+}
+.btnDan:hover {
+    color: #5B1911;
+    background: red;
+    border: 2px solid #5B1911;
+}
+/*! Success */
+.alert-success {
+    border: 3px solid #75b798;
+    background-color: #051B11;
+    color: #75b798;
+    padding: 1.5em;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.btnSuc {
+    margin-left: 10px;
+    width: 4em;
+    color: #75b798;
+    background: transparent;
+    border: 2px solid #75b798;
+}
+.btnSuc:hover {
+    color: #051B11;
+    background: #75b798;
+    border: 2px solid #051B11;
+}
+/*Todos Errors Styles */
+.bgerror {
+    background-image: radial-gradient(circle, #d3d3d3, #b8a3bb, #ae708f, #9f3a4f, #7c0000);
+    height: 100vh;
+}
+.btnerror {
+    background: #031633;
+    color: #6ea8fe;
+    border: 2px solid #6ea8fe;
+    padding: 10px 32px;
+}
+.btnerror:hover {
+    background: #6ea8fe;
+    color: #031633;
+    border: 2px solid #031633;
+}
+
+/* IMG Form Style */
+.imgForm {
+    width: 100px;
+    height: 75px;
+    border: 1px solid white;
+}
+
+.bordesForm {
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}

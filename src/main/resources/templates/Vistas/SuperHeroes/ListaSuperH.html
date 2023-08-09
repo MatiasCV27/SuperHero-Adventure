@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantillas/templates::head">
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body class="bgCards">
+    <!-- Navegador -->
+    <header th:replace="plantillas/templates::header"></header>
+    <!-- Contenido -->
+    <div class="container">
+        <h1 class="text-center titulo text-white"><strong><u>Listado de Super-Heroes</u></strong></h1>
+        <a th:href="@{/Vistas/SuperHeroes/Registrar}" class="btn btn-success regisEven" sec:authorize="hasRole('ROLE_ADMIN')">Registrar Nuevo SuperHeroe</a>
+        <a th:href="@{/Vistas/SuperHeroes/?format=pdf}" class="btn btn-primary regisEven" target="_blank" sec:authorize="hasRole('ROLE_ADMIN')">Visualizar el PDF</a>
+        <div class="tabla" style="width: 100%; overflow-x: auto;">
+            <table class="table text-white" style="font-family: Cambria;">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center bg-dark text-white">#</th>
+                    <th scope="col" class="text-center bg-dark text-white">Nombre</th>
+                    <th scope="col" class="text-center bg-dark text-white">Alias</th>
+                    <th scope="col" class="text-center bg-dark text-white">Nacimiento</th>
+                    <th scope="col" class="text-center bg-dark text-white">Edad</th>
+                    <th scope="col" class="text-center bg-dark text-white">Genero</th>
+                    <th scope="col" class="text-center bg-dark text-white">Nacionalidad</th>
+                    <th scope="col" class="text-center bg-dark text-white">Debilidad</th>
+                    <th scope="col" class="text-center bg-dark text-white">Descripción</th>
+                    <th scope="col" class="text-center bg-dark text-white">Organización</th>
+                    <th scope="col" class="text-center bg-dark text-white">Planeta</th>
+                    <th scope="col" class="text-center bg-dark text-white">Villanos</th>
+                    <th scope="col" class="text-center bg-dark text-white">Habilidades</th>
+                    <th scope="col" class="text-center bg-dark text-white">Eventos</th>
+                    <th scope="col" class="text-center bg-dark text-white">Imagen</th>
+                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')" class="bg-dark text-white"></th>
+                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')" class="bg-dark text-white"></th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr th:each="sh : ${superheroe}">
+                    <th scope="row" th:text="${sh.id_superheroe}" class="text-center align-middle bg-dark text-white"></th>
+                    <td th:text="${sh.nombre_sh}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.alias_sh}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${#dates.format(sh.fecha_naci_sh, 'yyyy-MM-dd')}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.edad_sh}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.genero_sh}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.nacionalidad_sh}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.debilidad_sh}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.desc_sh}" class="align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.Organizacion.nombre_org}" class="text-center align-middle bg-dark text-white"></td>
+                    <td th:text="${sh.Planeta.nombre_pla}" class="text-center align-middle bg-dark text-white"></td>
+                    <td class="text-center align-middle bg-dark text-white">
+                        <ol><li th:each="vil : ${sh.villano}" th:text="${vil.nombre_vil}"></li></ol>
+                    </td>
+                    <td class="text-center align-middle bg-dark text-white">
+                        <ol><li th:each="hab : ${sh.habilidad}" th:text="${hab.nombre_hab}"></li></ul>
+                    </td>
+                    <td class="text-center align-middle bg-dark text-white">
+                        <ol><li th:each="eve : ${sh.evento}" th:text="${eve.nombre_eve}"></li></ul>
+                    </td>
+                    <td class="align-middle bg-dark text-white"><img th:src="@{/images/AdminIMGs/SuperHeroes/}+${sh.imagen_sh}" class="imgForm"></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" class="align-middle bg-dark text-white"><a th:href="@{/Vistas/SuperHeroes/Editar/}+${sh.id_superheroe}" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" class="align-middle bg-dark text-white"><a th:href="@{/Vistas/SuperHeroes/Eliminar/}+${sh.id_superheroe}"  class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de que quieres eliminar este super heroe?')"><i class="bi bi-trash"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <!-- Footer -->
+    
+    <footer th:replace="plantillas/templates::footer"></footer></footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>
